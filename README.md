@@ -82,8 +82,6 @@ Deploy a container to a digitalocean kubernetes cluster
 | docker_secret | The secret to use to pull images. | false |  |
 | digitalocean_token | The digitalocean token, if you are deploying to digitalocean. | false |  |
 | digitalocean_cluster | The name of the digitalocean_cluster if you are deploying to digitalocean. | false |  |
-
-THIS SHOULD NOT BE HERE!
 <!-- region:parameters end -->
 
 
