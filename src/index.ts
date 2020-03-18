@@ -3,8 +3,6 @@ import * as exec from "@actions/exec";
 import * as fs from "fs";
 import * as autogen from "./autogen";
 import fetch from "node-fetch";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const YAML = require("yaml");
 
 process.chdir(`${__dirname}/../test/01-kubernetes`);
 
@@ -96,9 +94,11 @@ async function createKubernetesDeployment(
     const release = inputs.release || getReleaseFromImage(inputs.image);
     const host = resolveHost(inputs.host, app, release);
 
-    console.log(
-        YAML.stringify({ app, release, host, image, port }).slice(0, -1),
-    );
+    const data = { app, release, host, image, port };
+    for (const key in data) {
+        console.log(key.padEnd(20), (data as any)[key]);
+    }
+
     core.endGroup();
 
     const env = Object.assign({}, process.env as any, {
