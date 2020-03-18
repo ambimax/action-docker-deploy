@@ -1,0 +1,41 @@
+{
+  "name": "@ambimax/action-docker-deploy",
+  "version": "0.0.0",
+  "contributors": [
+    "Tobias Faust <tf@ambimax.de> (https://github.com/FaustTobias)"
+  ],
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn generate && rollup -c",
+    "start": "node dist",
+    "generate": "ts-node --transpile-only scripts/generate",
+    "test": "ts-node --transpile-only scripts/test"
+  },
+  "devDependencies": {
+    "@actions/core": "^1.2.3",
+    "@actions/exec": "^1.0.3",
+    "@faustt/eslint-config": "^1.0.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
+    "@types/node": "^12",
+    "@types/node-fetch": "^2.5.5",
+    "@types/yaml": "^1.2.0",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "node-fetch": "^2.6.0",
+    "prettier": "^1.19.1",
+    "rollup": "^2.0.6",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3",
+    "yaml": "^1.8.2"
+  },
+  "dependencies": {
+    "@actions/io": "^1.0.2"
+  }
+}
