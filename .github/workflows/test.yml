@@ -21,11 +21,11 @@ jobs:
       EXAMPLE_DOCKER_IMAGE: "${{ secrets.EXAMPLE_DOCKER_IMAGE }}"
       EXAMPLE_PORT: "${{ secrets.EXAMPLE_PORT }}"
       EXAMPLE_PULL_SECRET: "${{ secrets.EXAMPLE_PULL_SECRET }}"
-  
+
   check-artifacts:
-    name: "Check build artifacts"
+    name: "Check artifacts"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - run: yarn --frozen-lockfile
-      - run: yarn check-dist-folder
+      - run: yarn check-artifacts

@@ -11,7 +11,7 @@
     "start": "node dist",
     "generate": "ts-node --transpile-only scripts/generate",
     "test": "ts-node --transpile-only scripts/test",
-    "check-dist-folder": "ts-node --transpile-only scripts/check-dist-folder"
+    "check-artifacts": "ts-node --transpile-only scripts/check-artifacts"
   },
   "devDependencies": {
     "@actions/core": "^1.2.3",
