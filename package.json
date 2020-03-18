@@ -10,7 +10,8 @@
     "build": "yarn generate && rollup -c",
     "start": "node dist",
     "generate": "ts-node --transpile-only scripts/generate",
-    "test": "ts-node --transpile-only scripts/test"
+    "test": "ts-node --transpile-only scripts/test",
+    "check-dist-folder": "ts-node --transpile-only scripts/check-dist-folder"
   },
   "devDependencies": {
     "@actions/core": "^1.2.3",
