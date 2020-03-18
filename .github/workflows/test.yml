@@ -15,4 +15,8 @@ jobs:
       - run: yarn build
       - run: yarn test
     env:
-      DIGITALOCEAN_TOKEN: ${{ secrets.DIGITALOCEAN_TOKEN }}
+      EXAMPLE_HOST: "${{ secrets.EXAMPLE_HOST }}"
+      EXAMPLE_DIGITALOCEAN_TOKEN: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
+      EXAMPLE_DIGITALOCEAN_CLUSTER: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
+      EXAMPLE_DOCKER_IMAGE: "${{ secrets.EXAMPLE_DOCKER_IMAGE }}"
+      EXAMPLE_PORT: "${{ secrets.EXAMPLE_PORT }}"
