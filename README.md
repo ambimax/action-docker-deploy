@@ -64,7 +64,7 @@ Deploy a container to a digitalocean kubernetes cluster
           port: ${{ secrets.EXAMPLE_PORT }}
           digitalocean_token: ${{ secrets.DIGITALOCEAN_TOKEN }}
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
-          docker_secret: ${{ EXAMPLE_PULL_SECRET }}
+          docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
 ```
 <!-- region:examples end -->
 
