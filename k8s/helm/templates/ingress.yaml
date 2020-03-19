@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ include "chart.fullname" . }}"
+  labels:
+{{ include "chart.labels" . | indent 4 }}
+spec:
+  rules:
+    - host: "{{ .Values.host }}"
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: "{{ include "chart.fullname" . }}"
+              servicePort: {{ .Values.port }}

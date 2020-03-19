@@ -1,0 +1,31 @@
+name: "Test"
+
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  test:
+    name: "Run Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn --frozen-lockfile
+      - run: yarn build
+      - run: yarn test
+    env:
+      EXAMPLE_HOST: "${{ secrets.EXAMPLE_HOST }}"
+      EXAMPLE_DIGITALOCEAN_TOKEN: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
+      EXAMPLE_DIGITALOCEAN_CLUSTER: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
+      EXAMPLE_DOCKER_IMAGE: "${{ secrets.EXAMPLE_DOCKER_IMAGE }}"
+      EXAMPLE_PORT: "${{ secrets.EXAMPLE_PORT }}"
+      EXAMPLE_PULL_SECRET: "${{ secrets.EXAMPLE_PULL_SECRET }}"
+
+  check-artifacts:
+    name: "Check artifacts"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn --frozen-lockfile
+      - run: yarn check-artifacts

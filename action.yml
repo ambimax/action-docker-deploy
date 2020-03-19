@@ -1,0 +1,57 @@
+name: Deploy a docker image
+description: Deploy a docker image
+
+inputs:
+  image:
+    description: The image to deploy.
+    required: true
+    default: ""
+
+  host:
+    description: |
+      The host under which to deploy the image.
+
+      If the host contains "*" it will be replaced by the full deployment name.
+    required: true
+    default: ""
+
+  app:
+    description: |
+      The name of the app.
+
+      If no name is given it will be set to the docker image name (without leading namespaces).
+    required: false
+    default: ""
+
+  release:
+    description: |
+      The name of the release.
+
+      If no release is given it will be set to the docker image tag.
+    required: false
+    default: ""
+
+  port:
+    description: The port to expose from the image.
+    required: false
+    default: "80"
+
+  docker_secret:
+    description: The secret to use to pull images.
+    required: false
+  
+  digitalocean_token:
+    description: The digitalocean token, if you are deploying to digitalocean.
+    required: false
+  
+  digitalocean_cluster:
+    description: The name of the digitalocean_cluster if you are deploying to digitalocean.
+    required: false
+
+branding:
+  icon: "gift"
+  color: "blue"
+
+runs:
+  using: "node12"
+  main: "dist/index.js"
