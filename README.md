@@ -44,7 +44,7 @@ jobs:
 Deploy a container to a digitalocean kubernetes cluster
 
 ```yml
-      - uses: ambimax/action-docker-build@v1
+      - uses: ambimax/action-docker-build@v2
         with:
           image: containous/whoami
           host: ${{ secrets.EXAMPLE_HOST }}
@@ -57,7 +57,7 @@ Deploy a container to a digitalocean kubernetes cluster
 Deploy a container to a digitalocean kubernetes cluster with environment variables
 
 ```yml
-      - uses: ambimax/action-docker-build@v1
+      - uses: ambimax/action-docker-build@v2
         with:
           image: containous/whoami
           release: env-test
@@ -74,7 +74,7 @@ Deploy a container to a digitalocean kubernetes cluster with environment variabl
 Deploy a container to a digitalocean kubernetes cluster
 
 ```yml
-      - uses: ambimax/action-docker-build@v1
+      - uses: ambimax/action-docker-build@v2
         with:
           image: ${{ secrets.EXAMPLE_DOCKER_IMAGE }}
           host: ${{ secrets.EXAMPLE_HOST }}
