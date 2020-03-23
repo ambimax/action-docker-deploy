@@ -52,7 +52,24 @@ Deploy a container to a digitalocean kubernetes cluster
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
 ```
 
-### [kubernetes-custom-registry](test/02-kubernetes-custom-registry)
+### [kubernetes-env](test/02-kubernetes-env)
+
+Deploy a container to a digitalocean kubernetes cluster with environment variables
+
+```yml
+      - uses: ambimax/action-docker-build@v1
+        with:
+          image: containous/whoami
+          release: env-test
+          host: ${{ secrets.EXAMPLE_HOST }}
+          env: WHOAMI_NAME
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+        env:
+          WHOAMI_NAME: ${{ secrets.EXAMPLE_WHOAMI_NAME }}
+```
+
+### [kubernetes-custom-registry](test/03-kubernetes-custom-registry)
 
 Deploy a container to a digitalocean kubernetes cluster
 
@@ -76,6 +93,7 @@ Deploy a container to a digitalocean kubernetes cluster
 |-|-|-|-|
 | image | The image to deploy. | true |  |
 | host | The host under which to deploy the image.<br><br>If the host contains "*" it will be replaced by the full deployment name.<br> | true |  |
+| env | A comma separated list of environment variable names to provide to the container.<br> | false |  |
 | app | The name of the app.<br><br>If no name is given it will be set to the docker image name (without leading namespaces).<br> | false |  |
 | release | The name of the release.<br><br>If no release is given it will be set to the docker image tag.<br> | false |  |
 | port | The port to expose from the image. | false | 80 |

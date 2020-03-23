@@ -101,6 +101,13 @@ ${YAML.stringify({
                     ...(Object.keys(inputs.with).length > 0
                         ? [{ with: inputs.with }]
                         : []),
+                    ...(inputs.env && Object.keys(inputs.env).length > 0
+                        ? [
+                              {
+                                  env: inputs.env,
+                              },
+                          ]
+                        : []),
                 ),
             ],
         },

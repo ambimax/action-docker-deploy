@@ -93,6 +93,10 @@ async function createKubernetesDeployment(
     const app = inputs.app || getAppFromImage(inputs.image);
     const release = inputs.release || getReleaseFromImage(inputs.image);
     const host = resolveHost(inputs.host, app, release);
+    const env = ((inputs.env || "")
+        .split(",")
+        .filter(key => !!key.trim() && process.env[key] !== undefined)
+        .map(key => ["--set", `env.${key}=${process.env[key]}`]) as any).flat();
 
     const data = { app, release, host, image, port };
     for (const key in data) {
@@ -100,10 +104,6 @@ async function createKubernetesDeployment(
     }
 
     core.endGroup();
-
-    const env = Object.assign({}, process.env as any, {
-        KUBECONFIG: `${tmpDir}/kubeconfig`,
-    });
 
     core.startGroup("Deploy");
     await exec.exec(
@@ -125,11 +125,16 @@ async function createKubernetesDeployment(
             `port=${port}`,
             "--set",
             `app=${app}`,
+            "--set",
+            `release=${release}`,
+            ...env,
             app + "-" + release,
             `${__dirname}/../k8s/helm`,
         ],
         {
-            env,
+            env: {
+                KUBECONFIG: `${tmpDir}/kubeconfig`,
+            },
         },
     );
     core.endGroup();

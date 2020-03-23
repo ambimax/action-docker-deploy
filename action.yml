@@ -15,6 +15,12 @@ inputs:
     required: true
     default: ""
 
+  env:
+    description: |
+      A comma separated list of environment variable names to provide to the container.
+    required: false
+    default: ""
+
   app:
     description: |
       The name of the app.
@@ -39,11 +45,11 @@ inputs:
   docker_secret:
     description: The secret to use to pull images.
     required: false
-  
+
   digitalocean_token:
     description: The digitalocean token, if you are deploying to digitalocean.
     required: false
-  
+
   digitalocean_cluster:
     description: The name of the digitalocean_cluster if you are deploying to digitalocean.
     required: false
