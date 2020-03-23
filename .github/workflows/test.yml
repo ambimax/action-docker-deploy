@@ -21,6 +21,7 @@ jobs:
       EXAMPLE_DOCKER_IMAGE: "${{ secrets.EXAMPLE_DOCKER_IMAGE }}"
       EXAMPLE_PORT: "${{ secrets.EXAMPLE_PORT }}"
       EXAMPLE_PULL_SECRET: "${{ secrets.EXAMPLE_PULL_SECRET }}"
+      EXAMPLE_WHOAMI_NAME: "${{ secrets.EXAMPLE_WHOAMI_NAME }}"
 
   check-artifacts:
     name: "Check artifacts"
