@@ -29,8 +29,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - uses: ambimax/action-docker-deploy@v1
+      - uses: actions/checkout@v2
+      - uses: ambimax/action-docker-deploy@v2
         with:
           image: containous/whoami
           host: "*.preview.company.com"
