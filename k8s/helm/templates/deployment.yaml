@@ -3,15 +3,19 @@ kind: Deployment
 metadata:
   name: "{{ include "chart.fullname" . }}"
   labels:
+    app: "{{ .Values.app }}"
+    release: "{{ .Values.release }}"
 {{ include "chart.labels" . | indent 4 }}
 spec:
   selector:
     matchLabels:
       app: "{{ .Values.app }}"
+      release: "{{ .Values.release }}"
   template:
     metadata:
       labels:
         app: "{{ .Values.app }}"
+        release: "{{ .Values.release }}"
     spec:
       imagePullSecrets:
         - name: regcred
@@ -21,7 +25,9 @@ spec:
         env:
         - name: HOST
           value: https://{{ .Values.host }}
-        - name: NODE_ENV
-          value: {{ .Values.env }}
+{{ range $key, $value := .Values.env }}
+        - name: "{{ $key }}"
+          value: "{{ $value }}"
+{{ end }}
         ports:
         - containerPort: {{ .Values.port }}

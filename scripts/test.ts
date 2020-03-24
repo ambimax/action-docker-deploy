@@ -45,9 +45,10 @@ async function runTest(test: string): Promise<void> {
             process.exit(1);
         }
 
+        const inputEnv = inputs.env || {};
         inputs = inputs.with;
 
-        const env = Object.assign(
+        const stepEnv = Object.assign(
             {},
             process.env,
             ...Object.keys(inputs).map(key => ({
@@ -56,11 +57,16 @@ async function runTest(test: string): Promise<void> {
                     string
                 >)[key],
             })),
+            ...Object.keys(inputEnv).map(key => ({
+                [key]: inputEnv[key].replace(secretRegex, (...args: any) =>
+                    env(args[1]),
+                ),
+            })),
         );
 
         const result = await exec.exec("node", [`${__dirname}/../dist`], {
             cwd,
-            env: env,
+            env: stepEnv,
             ignoreReturnCode: true,
         });
 

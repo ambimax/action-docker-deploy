@@ -1,0 +1,11 @@
+description: Deploy a container to a digitalocean kubernetes cluster with environment variables
+
+with:
+  image: containous/whoami
+  release: "env-test"
+  host: "${{ secrets.EXAMPLE_HOST }}"
+  env: WHOAMI_NAME
+  digitalocean_token: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
+  digitalocean_cluster: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
+env:
+  WHOAMI_NAME: "${{ secrets.EXAMPLE_WHOAMI_NAME }}"

@@ -96,10 +96,17 @@ ${YAML.stringify({
             steps: [
                 Object.assign(
                     {
-                        uses: "ambimax/action-docker-build@v1",
+                        uses: "ambimax/action-docker-build@v2",
                     },
                     ...(Object.keys(inputs.with).length > 0
                         ? [{ with: inputs.with }]
+                        : []),
+                    ...(inputs.env && Object.keys(inputs.env).length > 0
+                        ? [
+                              {
+                                  env: inputs.env,
+                              },
+                          ]
                         : []),
                 ),
             ],
