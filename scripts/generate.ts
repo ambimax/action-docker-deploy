@@ -96,7 +96,7 @@ ${YAML.stringify({
             steps: [
                 Object.assign(
                     {
-                        uses: "ambimax/action-docker-build@v2",
+                        uses: "ambimax/action-docker-deploy@v2",
                     },
                     ...(Object.keys(inputs.with).length > 0
                         ? [{ with: inputs.with }]
