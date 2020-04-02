@@ -54,6 +54,11 @@ inputs:
     description: The name of the digitalocean_cluster if you are deploying to digitalocean.
     required: false
 
+  undeploy:
+    description: Whether or not to undeploy instead of deploy the container.
+    required: false
+    default: "false"
+
 branding:
   icon: "gift"
   color: "blue"
