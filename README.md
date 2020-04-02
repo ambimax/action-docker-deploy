@@ -118,7 +118,7 @@ Undeploy a container from a digitalocean kubernetes cluster with environment var
 
 ### [kubernetes-custom-registry-undeploy](test/06-kubernetes-custom-registry-undeploy)
 
-Deploy a container from a digitalocean kubernetes cluster
+Undeploy a container from a digitalocean kubernetes cluster
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2
