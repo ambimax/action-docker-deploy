@@ -83,6 +83,54 @@ Deploy a container to a digitalocean kubernetes cluster
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
           docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
 ```
+
+### [kubernetes-undeploy](test/04-kubernetes-undeploy)
+
+Undeploy a container from a digitalocean kubernetes cluster
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          undeploy: "true"
+```
+
+### [kubernetes-env-undeploy](test/05-kubernetes-env-undeploy)
+
+Undeploy a container from a digitalocean kubernetes cluster with environment variables
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          release: env-test
+          host: ${{ secrets.EXAMPLE_HOST }}
+          env: WHOAMI_NAME
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          undeploy: yes
+        env:
+          WHOAMI_NAME: ${{ secrets.EXAMPLE_WHOAMI_NAME }}
+```
+
+### [kubernetes-custom-registry-undeploy](test/06-kubernetes-custom-registry-undeploy)
+
+Undeploy a container from a digitalocean kubernetes cluster
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: ${{ secrets.EXAMPLE_DOCKER_IMAGE }}
+          host: ${{ secrets.EXAMPLE_HOST }}
+          port: ${{ secrets.EXAMPLE_PORT }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
+          undeploy: "1"
+```
 <!-- region:examples end -->
 
 
@@ -100,6 +148,7 @@ Deploy a container to a digitalocean kubernetes cluster
 | docker_secret | The secret to use to pull images. | false |  |
 | digitalocean_token | The digitalocean token, if you are deploying to digitalocean. | false |  |
 | digitalocean_cluster | The name of the digitalocean_cluster if you are deploying to digitalocean. | false |  |
+| undeploy | Whether or not to undeploy instead of deploy the container. | false | false |
 <!-- region:parameters end -->
 
 

@@ -105,39 +105,49 @@ async function createKubernetesDeployment(
 
     core.endGroup();
 
-    core.startGroup("Deploy");
-    await exec.exec(
-        "helm",
-        [
-            "upgrade",
-            "--atomic",
-            "--cleanup-on-fail",
-            "--timeout",
-            "30s",
-            "--install",
-            "--set",
-            `nameOverride=${app}`,
-            "--set",
-            `host=${host}`,
-            "--set",
-            `image=${image}`,
-            "--set",
-            `port=${port}`,
-            "--set",
-            `app=${app}`,
-            "--set",
-            `release=${release}`,
-            ...env,
-            app + "-" + release,
-            `${__dirname}/../k8s/helm`,
-        ],
-        {
+    if (!parseBoolean(inputs.undeploy)) {
+        core.startGroup("Deploy");
+        await exec.exec(
+            "helm",
+            [
+                "upgrade",
+                "--atomic",
+                "--cleanup-on-fail",
+                "--timeout",
+                "30s",
+                "--install",
+                "--set",
+                `nameOverride=${app}`,
+                "--set",
+                `host=${host}`,
+                "--set",
+                `image=${image}`,
+                "--set",
+                `port=${port}`,
+                "--set",
+                `app=${app}`,
+                "--set",
+                `release=${release}`,
+                ...env,
+                app + "-" + release,
+                `${__dirname}/../k8s/helm`,
+            ],
+            {
+                env: {
+                    KUBECONFIG: `${tmpDir}/kubeconfig`,
+                },
+            },
+        );
+        core.endGroup();
+    } else {
+        core.startGroup("Undeploy");
+        await exec.exec("helm", ["delete", app + "-" + release], {
             env: {
                 KUBECONFIG: `${tmpDir}/kubeconfig`,
             },
-        },
-    );
-    core.endGroup();
+        });
+        core.endGroup();
+    }
 }
 
 async function digitalocean(
@@ -176,5 +186,10 @@ function resolveHost(host: string, app: string, release: string): string {
 process.on("exit", () => {
     fs.rmdirSync(tmpDir, { recursive: true });
 });
+
+function parseBoolean(value: any): boolean {
+    value = String(value);
+    return value === "true" || value === "yes" || value === "1";
+}
 
 run().catch(e => core.setFailed(e.message));
