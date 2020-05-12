@@ -15,6 +15,7 @@ jobs:
       - run: yarn build
       - run: yarn test
     env:
+      GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       EXAMPLE_HOST: "${{ secrets.EXAMPLE_HOST }}"
       EXAMPLE_DIGITALOCEAN_TOKEN: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
       EXAMPLE_DIGITALOCEAN_CLUSTER: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
