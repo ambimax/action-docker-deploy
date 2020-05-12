@@ -105,6 +105,8 @@ async function createKubernetesDeployment(
 
     core.endGroup();
 
+    console.log("::warning::Test annotation");
+
     if (!parseBoolean(inputs.undeploy)) {
         core.startGroup("Deploy");
         await exec.exec(
