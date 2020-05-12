@@ -59,6 +59,15 @@ inputs:
     required: false
     default: "false"
 
+  enable_commit_comment:
+    description: Whether or not to add a comment to the commit with the deployment information.
+    required: false
+    default: "false"
+
+  github_token:
+    description: The github token used to create the commit comment.
+    required: false
+
 branding:
   icon: "gift"
   color: "blue"
