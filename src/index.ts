@@ -106,7 +106,7 @@ async function createKubernetesDeployment(
 
     core.endGroup();
 
-    if (inputs.enable_commit_comment) {
+    if (parseBoolean(inputs.enable_commit_comment)) {
         // Code is a modified version from
         // https://github.com/nwtgck/actions-netlify/blob/83e878e5d3f6b6ea0b5883f0acac082f1739b866/src/main.ts#L79
 
@@ -118,7 +118,7 @@ async function createKubernetesDeployment(
                 repo: github.context.repo.repo,
                 // eslint-disable-next-line @typescript-eslint/camelcase
                 commit_sha: github.context.sha,
-                body: `🚀 Beep Boop. Deployed to ${host}`,
+                body: `🚀 Beep Boop. Deployed to [https://${host}](https://${host})`,
             };
 
             // TODO: Remove try
@@ -136,7 +136,7 @@ async function createKubernetesDeployment(
                 );
             }
         } else {
-            core.warning("github_token not provided for ");
+            core.warning("github_token not provided for commit_comment.");
         }
     }
 
