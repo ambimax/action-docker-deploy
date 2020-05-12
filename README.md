@@ -36,6 +36,9 @@ jobs:
           host: "*.preview.company.com"
           digitalocean_token: "${{ secrets.DIGITALOCEAN_TOKEN }}"
           digitalocean_cluster: "preview"
+          # Add a comment to the commit with the deployed URL.
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 <!-- region:examples start -->
