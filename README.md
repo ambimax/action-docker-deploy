@@ -36,6 +36,9 @@ jobs:
           host: "*.preview.company.com"
           digitalocean_token: "${{ secrets.DIGITALOCEAN_TOKEN }}"
           digitalocean_cluster: "preview"
+          # Add a comment to the commit with the deployed URL.
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 <!-- region:examples start -->
@@ -50,6 +53,8 @@ Deploy a container to a digitalocean kubernetes cluster
           host: ${{ secrets.EXAMPLE_HOST }}
           digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ### [kubernetes-env](test/02-kubernetes-env)
@@ -149,6 +154,8 @@ Undeploy a container from a digitalocean kubernetes cluster
 | digitalocean_token | The digitalocean token, if you are deploying to digitalocean. | false |  |
 | digitalocean_cluster | The name of the digitalocean_cluster if you are deploying to digitalocean. | false |  |
 | undeploy | Whether or not to undeploy instead of deploy the container. | false | false |
+| enable_commit_comment | Whether or not to add a comment to the commit with the deployment information. | false | false |
+| github_token | The github token used to create the commit comment. | false |  |
 <!-- region:parameters end -->
 
 

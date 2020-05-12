@@ -1,5 +1,6 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import json from "@rollup/plugin-json";
 import typescript from "rollup-plugin-typescript2";
 import { terser } from "rollup-plugin-terser";
 
@@ -14,6 +15,7 @@ export default {
         resolve({
             preferBuiltins: true,
         }),
+        json(),
         typescript({
             tsconfigOverride: {
                 compilerOptions: {
