@@ -93,7 +93,7 @@ async function runTest(test: string): Promise<void> {
     console.log();
 }
 
-function env(name: string): stirng {
+function env(name: string): string {
     const value = process.env[name];
     if (!value) {
         console.error("Error:", "Required environment variable not set:", name);
