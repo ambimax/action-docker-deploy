@@ -1,0 +1,8 @@
+description: Deploy a container to a digitalocean kubernetes cluster with custom values from a file
+
+with:
+  image: containous/whoami
+  host: "${{ secrets.EXAMPLE_HOST }}"
+  digitalocean_token: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
+  digitalocean_cluster: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
+  values_file: ./values.yml

@@ -136,6 +136,35 @@ Undeploy a container from a digitalocean kubernetes cluster
           docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
           undeploy: "1"
 ```
+
+### [kubernetes-values](test/07-kubernetes-values)
+
+Deploy a container to a digitalocean kubernetes cluster with custom values from a file
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          values_file: ./values.yml
+```
+
+### [kubernetes-values-undeploy](test/08-kubernetes-values-undeploy)
+
+Undeploy a container to a digitalocean kubernetes cluster with custom values from a file
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          values_file: ./values.yml
+          undeploy: "true"
+```
 <!-- region:examples end -->
 
 
@@ -156,6 +185,7 @@ Undeploy a container from a digitalocean kubernetes cluster
 | undeploy | Whether or not to undeploy instead of deploy the container. | false | false |
 | enable_commit_comment | Whether or not to add a comment to the commit with the deployment information. | false | false |
 | github_token | The github token used to create the commit comment. | false |  |
+| values_file | Path to a yaml file that will be used to provide configuration values for the internal helm chart. See the [./k8s/helm](Chart) for more information. | false |  |
 <!-- region:parameters end -->
 
 
