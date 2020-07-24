@@ -139,7 +139,7 @@ Undeploy a container from a digitalocean kubernetes cluster
 
 ### [kubernetes-values](test/07-kubernetes-values)
 
-Deploy a container to a digitalocean kubernetes cluster with custom values
+Deploy a container to a digitalocean kubernetes cluster with custom values from a file
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2
@@ -153,7 +153,7 @@ Deploy a container to a digitalocean kubernetes cluster with custom values
 
 ### [kubernetes-values-undeploy](test/08-kubernetes-values-undeploy)
 
-Deploy a container to a digitalocean kubernetes cluster with custom values
+Undeploy a container to a digitalocean kubernetes cluster with custom values from a file
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2

@@ -1,4 +1,4 @@
-description: Deploy a container to a digitalocean kubernetes cluster with custom values
+description: Deploy a container to a digitalocean kubernetes cluster with custom values from a file
 
 with:
   image: containous/whoami
