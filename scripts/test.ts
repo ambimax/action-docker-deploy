@@ -2,6 +2,7 @@ import * as fs from "fs";
 import * as core from "@actions/core";
 import * as exec from "@actions/exec";
 import * as YAML from "yaml";
+import { resolve } from "path";
 
 async function run(): Promise<void> {
     process.exitCode = 0;
@@ -19,7 +20,7 @@ async function run(): Promise<void> {
 }
 
 async function runTest(test: string): Promise<void> {
-    const cwd = `${__dirname}/../test/${test}`;
+    const cwd = resolve(`${__dirname}/../test/${test}`);
 
     const secretRegex = /\$\{\{\s*secrets\.(\w+)\s*\}\}/g;
     let inputsRaw = fs.readFileSync(`${cwd}/inputs.yml`).toString();

@@ -5,8 +5,6 @@ import * as fs from "fs";
 import * as autogen from "./autogen";
 import fetch from "node-fetch";
 
-process.chdir(`${__dirname}/../test/01-kubernetes`);
-
 const tmpDir = fs.mkdtempSync("docker-deploy-");
 
 /**
