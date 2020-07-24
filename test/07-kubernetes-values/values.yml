@@ -1,0 +1,9 @@
+env:
+  # Provide custom env variables via values.yml:
+  HELLO_WORLD: hello world
+
+ingress:
+  annotations:
+    # Set a restrictive ip whitelist range for traefik v1:
+    traefik.ingress.kubernetes.io/whitelist-source-range: "0.0.0.0/0" # not very restrictive yet
+    ingress.kubernetes.io/whitelist-x-forwarded-for: "true"

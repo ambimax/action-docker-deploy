@@ -2,3 +2,5 @@ app: ""
 image: ""
 host: ""
 port: 80
+ingress:
+  annotations: {}
