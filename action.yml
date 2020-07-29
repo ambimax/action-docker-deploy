@@ -68,6 +68,10 @@ inputs:
     description: The github token used to create the commit comment.
     required: false
 
+  values_file:
+    description: Path to a yaml file that will be used to provide configuration values for the internal helm chart. See the [./k8s/helm](Chart) for more information.
+    required: false
+
 branding:
   icon: "gift"
   color: "blue"

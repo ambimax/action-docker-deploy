@@ -6,6 +6,10 @@ metadata:
     app: "{{ .Values.app }}"
     release: "{{ .Values.release }}"
 {{ include "chart.labels" . | indent 4 }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+    {{ toYaml . | nindent 4 }}
+{{- end }}
 spec:
   rules:
     - host: "{{ .Values.host }}"

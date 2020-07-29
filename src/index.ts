@@ -5,8 +5,6 @@ import * as fs from "fs";
 import * as autogen from "./autogen";
 import fetch from "node-fetch";
 
-process.chdir(`${__dirname}/../test/01-kubernetes`);
-
 const tmpDir = fs.mkdtempSync("docker-deploy-");
 
 /**
@@ -142,6 +140,19 @@ async function createKubernetesDeployment(
 
     if (!parseBoolean(inputs.undeploy)) {
         core.startGroup("Deploy");
+
+        const args: string[] = [];
+        if (inputs.values_file) {
+            if (!fs.existsSync(inputs.values_file)) {
+                core.warning(
+                    `input: values_file does not exist: ${inputs.values_file}`,
+                );
+                process.exit(1);
+            }
+
+            args.push("-f", inputs.values_file);
+        }
+
         await exec.exec(
             "helm",
             [
@@ -164,6 +175,7 @@ async function createKubernetesDeployment(
                 "--set",
                 `release=${release}`,
                 ...env,
+                ...args,
                 app + "-" + release,
                 `${__dirname}/../k8s/helm`,
             ],
