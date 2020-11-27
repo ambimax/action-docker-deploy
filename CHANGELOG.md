@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog].
 
 <!-- begin:changelog -->
 
-## 2020-11-27
+## 2.1.0 - 2020-11-27
 
 ### Added
 
