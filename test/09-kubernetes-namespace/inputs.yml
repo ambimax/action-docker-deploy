@@ -7,4 +7,4 @@ with:
   digitalocean_cluster: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
   enable_commit_comment: true
   github_token: ${{ secrets.GITHUB_TOKEN }}
-  namespace: custom-namespace
+  namespace: kube-system

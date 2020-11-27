@@ -179,7 +179,7 @@ Deploy a container to a digitalocean kubernetes cluster under a different namesp
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
           enable_commit_comment: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          namespace: custom-namespace
+          namespace: kube-system
 ```
 
 ### [kubernetes-namespace-undeploy](test/09-kubernetes-namespace-undeploy)
@@ -195,7 +195,7 @@ Deploy a container to a digitalocean kubernetes cluster under a different namesp
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
           enable_commit_comment: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          namespace: custom-namespace
+          namespace: kube-system
           undeploy: "true"
 ```
 <!-- region:examples end -->
