@@ -181,6 +181,23 @@ Deploy a container to a digitalocean kubernetes cluster under a different namesp
           github_token: ${{ secrets.GITHUB_TOKEN }}
           namespace: custom-namespace
 ```
+
+### [kubernetes-namespace-undeploy](test/09-kubernetes-namespace-undeploy)
+
+Deploy a container to a digitalocean kubernetes cluster under a different namespace
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          namespace: custom-namespace
+          undeploy: "true"
+```
 <!-- region:examples end -->
 
 

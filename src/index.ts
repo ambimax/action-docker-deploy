@@ -175,8 +175,7 @@ async function createKubernetesDeployment(
                 `app=${app}`,
                 "--set",
                 `release=${release}`,
-                "--set",
-                `namespace=${namespace}`,
+                `--namespace=${namespace}`,
                 ...env,
                 ...args,
                 app + "-" + release,
@@ -191,11 +190,15 @@ async function createKubernetesDeployment(
         core.endGroup();
     } else {
         core.startGroup("Undeploy");
-        await exec.exec("helm", ["delete", app + "-" + release], {
-            env: {
-                KUBECONFIG: `${tmpDir}/kubeconfig`,
+        await exec.exec(
+            "helm",
+            ["delete", `--namespace=${namespace}`, app + "-" + release],
+            {
+                env: {
+                    KUBECONFIG: `${tmpDir}/kubeconfig`,
+                },
             },
-        });
+        );
         core.endGroup();
     }
 }
