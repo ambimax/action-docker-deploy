@@ -37,6 +37,14 @@ inputs:
     required: false
     default: ""
 
+  namespace:
+    description: |
+      The namespace to deploy into.
+
+      If no namespace is given, it defaults to `default`.
+    required: false
+    default: ""
+
   port:
     description: The port to expose from the image.
     required: false

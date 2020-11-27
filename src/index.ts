@@ -91,13 +91,14 @@ async function createKubernetesDeployment(
     const port = inputs.port;
     const app = inputs.app || getAppFromImage(inputs.image);
     const release = inputs.release || getReleaseFromImage(inputs.image);
+    const namespace = inputs.namespace || "default";
     const host = resolveHost(inputs.host, app, release);
     const env = ((inputs.env || "")
         .split(",")
         .filter(key => !!key.trim() && process.env[key] !== undefined)
         .map(key => ["--set", `env.${key}=${process.env[key]}`]) as any).flat();
 
-    const data = { app, release, host, image, port };
+    const data = { app, release, namespace, host, image, port };
     for (const key in data) {
         console.log(key.padEnd(20), (data as any)[key]);
     }
@@ -174,6 +175,8 @@ async function createKubernetesDeployment(
                 `app=${app}`,
                 "--set",
                 `release=${release}`,
+                "--set",
+                `namespace=${namespace}`,
                 ...env,
                 ...args,
                 app + "-" + release,
