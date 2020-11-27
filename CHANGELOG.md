@@ -20,7 +20,6 @@ The format is based on [Keep a Changelog].
 <!-- Version Links -->
 
 [#11]: https://github.com/ambimax/action-docker-deploy/pull/11
-[pcw-170]: https://ambimax.atlassian.net/jira/software/projects/PCW/boards/107?selectedIssue=PCW-170
 
 ---
 
