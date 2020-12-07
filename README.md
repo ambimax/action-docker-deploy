@@ -168,7 +168,7 @@ Undeploy a container to a digitalocean kubernetes cluster with custom values fro
 
 ### [kubernetes-namespace](test/09-kubernetes-namespace)
 
-Deploy a container to a digitalocean kubernetes cluster under a different namespace
+Deploy a container on a digitalocean kubernetes cluster with a specific namespace
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2
@@ -182,9 +182,9 @@ Deploy a container to a digitalocean kubernetes cluster under a different namesp
           namespace: kube-system
 ```
 
-### [kubernetes-namespace-undeploy](test/09-kubernetes-namespace-undeploy)
+### [kubernetes-namespace-undeploy](test/10-kubernetes-namespace-undeploy)
 
-Deploy a container to a digitalocean kubernetes cluster under a different namespace
+Undeploy a container on a digitalocean kubernetes cluster with a specific namespace
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2

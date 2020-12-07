@@ -1,4 +1,4 @@
-description: Deploy a container to a digitalocean kubernetes cluster under a different namespace
+description: Undeploy a container on a digitalocean kubernetes cluster with a specific namespace
 
 with:
   image: containous/whoami
