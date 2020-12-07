@@ -1,0 +1,10 @@
+description: Deploy a container on a digitalocean kubernetes cluster with a specific namespace
+
+with:
+  image: containous/whoami
+  host: "${{ secrets.EXAMPLE_HOST }}"
+  digitalocean_token: "${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}"
+  digitalocean_cluster: "${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}"
+  enable_commit_comment: true
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  namespace: kube-system

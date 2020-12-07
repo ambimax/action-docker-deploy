@@ -165,6 +165,39 @@ Undeploy a container to a digitalocean kubernetes cluster with custom values fro
           values_file: ./values.yml
           undeploy: "true"
 ```
+
+### [kubernetes-namespace](test/09-kubernetes-namespace)
+
+Deploy a container on a digitalocean kubernetes cluster with a specific namespace
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          namespace: kube-system
+```
+
+### [kubernetes-namespace-undeploy](test/10-kubernetes-namespace-undeploy)
+
+Undeploy a container on a digitalocean kubernetes cluster with a specific namespace
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          host: ${{ secrets.EXAMPLE_HOST }}
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+          enable_commit_comment: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          namespace: kube-system
+          undeploy: "true"
+```
 <!-- region:examples end -->
 
 
@@ -178,6 +211,7 @@ Undeploy a container to a digitalocean kubernetes cluster with custom values fro
 | env | A comma separated list of environment variable names to provide to the container.<br> | false |  |
 | app | The name of the app.<br><br>If no name is given it will be set to the docker image name (without leading namespaces).<br> | false |  |
 | release | The name of the release.<br><br>If no release is given it will be set to the docker image tag.<br> | false |  |
+| namespace | The namespace to deploy into.<br><br>If no namespace is given, it defaults to `default`.<br> | false |  |
 | port | The port to expose from the image. | false | 80 |
 | docker_secret | The secret to use to pull images. | false |  |
 | digitalocean_token | The digitalocean token, if you are deploying to digitalocean. | false |  |
