@@ -14,7 +14,7 @@
     "check-artifacts": "ts-node --transpile-only scripts/check-artifacts"
   },
   "devDependencies": {
-    "@actions/core": "^1.2.3",
+    "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.3",
     "@actions/github": "^2.2.0",
     "@faustt/eslint-config": "^1.0.0",
