@@ -1,0 +1,23 @@
+name: "Update artifacts"
+
+on:
+  push:
+    branches:
+      - v*
+
+jobs:
+  update-artifacts:
+    name: "Update artifacts"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.AMBIMAX_GITHUB_RELEASE_TOKEN }}
+      - run: yarn
+      - run: yarn build
+      - name: Update artifacts
+        run: |
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git config --global user.name "github-actions"
+          git commit -am "[automated] Update artifacts [skip ci]" || echo "No changes to commit"
+          git push --force

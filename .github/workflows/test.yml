@@ -23,11 +23,3 @@ jobs:
       EXAMPLE_PORT: "${{ secrets.EXAMPLE_PORT }}"
       EXAMPLE_PULL_SECRET: "${{ secrets.EXAMPLE_PULL_SECRET }}"
       EXAMPLE_WHOAMI_NAME: "${{ secrets.EXAMPLE_WHOAMI_NAME }}"
-
-  check-artifacts:
-    name: "Check artifacts"
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: yarn --frozen-lockfile
-      - run: yarn check-artifacts
