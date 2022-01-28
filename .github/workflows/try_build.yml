@@ -1,0 +1,14 @@
+name: "Build"
+
+on:
+  push:
+    branches-ignore:
+      - v*
+
+jobs:
+  build:
+    name: "Build"
+    runs-on: ubuntu-latest
+    steps:
+      - run: yarn
+      - run: yarn build
