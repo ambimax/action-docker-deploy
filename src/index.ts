@@ -100,7 +100,15 @@ async function createKubernetesDeployment(
         .flat();
     const dockerPullSecret = inputs.docker_secret ?? "regcred";
 
-    const data = { app, release, namespace, host, image, port };
+    const data = {
+        app,
+        release,
+        namespace,
+        host,
+        image,
+        port,
+        dockerPullSecret,
+    };
     for (const key in data) {
         console.log(key.padEnd(20), (data as any)[key]);
     }
