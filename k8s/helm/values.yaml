@@ -4,3 +4,4 @@ host: ""
 port: 80
 ingress:
   annotations: {}
+dockerPullSecret: regcred
