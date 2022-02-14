@@ -32,6 +32,7 @@ async function runTest(test: string): Promise<void> {
             inputsRaw.slice(match.index + match[0].length);
 
         match = secretRegex.exec(inputsRaw);
+        secretRegex.lastIndex = match?.index ?? 0;
     }
 
     let inputs = YAML.parse(inputsRaw);
