@@ -19,7 +19,7 @@ spec:
         release: "{{ .Values.release }}"
     spec:
       imagePullSecrets:
-        - name: regcred
+        - name: "{{ .Values.dockerPullSecret }}"
       containers:
       - name: "{{ include "chart.fullname" . }}"
         image: "{{ .Values.image }}"

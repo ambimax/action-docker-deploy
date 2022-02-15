@@ -93,12 +93,22 @@ async function createKubernetesDeployment(
     const release = inputs.release || getReleaseFromImage(inputs.image);
     const namespace = inputs.namespace || "default";
     const host = resolveHost(inputs.host, app, release);
-    const env = ((inputs.env || "")
+    const env = (inputs.env || "")
         .split(",")
         .filter(key => !!key.trim() && process.env[key] !== undefined)
-        .map(key => ["--set", `env.${key}=${process.env[key]}`]) as any).flat();
+        .map(key => ["--set", `env.${key}=${process.env[key]}`])
+        .flat();
+    const dockerPullSecret = inputs.docker_secret ?? "regcred";
 
-    const data = { app, release, namespace, host, image, port };
+    const data = {
+        app,
+        release,
+        namespace,
+        host,
+        image,
+        port,
+        dockerPullSecret,
+    };
     for (const key in data) {
         console.log(key.padEnd(20), (data as any)[key]);
     }
@@ -173,6 +183,8 @@ async function createKubernetesDeployment(
                 `port=${port}`,
                 "--set",
                 `app=${app}`,
+                "--set",
+                `dockerPullSecret=${dockerPullSecret}`,
                 "--set",
                 `release=${release}`,
                 `--namespace=${namespace}`,
