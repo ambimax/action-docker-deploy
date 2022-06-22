@@ -190,7 +190,7 @@ async function createKubernetesDeployment(
                 `--namespace=${namespace}`,
                 ...env,
                 ...args,
-                app + "-" + release,
+                (app + "-" + release).slice(0, 53),
                 `${__dirname}/../k8s/helm`,
             ],
             {
