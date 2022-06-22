@@ -91,6 +91,7 @@ async function createKubernetesDeployment(
     const port = inputs.port;
     const app = inputs.app || getAppFromImage(inputs.image);
     const release = inputs.release || getReleaseFromImage(inputs.image);
+    const helmRelease = (app + "-" + release).slice(0, 53);
     const namespace = inputs.namespace || "default";
     const host = resolveHost(inputs.host, app, release);
     const env = (inputs.env || "")
@@ -103,6 +104,7 @@ async function createKubernetesDeployment(
     const data = {
         app,
         release,
+        helmRelease,
         namespace,
         host,
         image,
@@ -190,7 +192,7 @@ async function createKubernetesDeployment(
                 `--namespace=${namespace}`,
                 ...env,
                 ...args,
-                (app + "-" + release).slice(0, 53),
+                helmRelease,
                 `${__dirname}/../k8s/helm`,
             ],
             {
@@ -204,7 +206,7 @@ async function createKubernetesDeployment(
         core.startGroup("Undeploy");
         await exec.exec(
             "helm",
-            ["delete", `--namespace=${namespace}`, app + "-" + release],
+            ["delete", `--namespace=${namespace}`, helmRelease],
             {
                 env: {
                     KUBECONFIG: `${tmpDir}/kubeconfig`,
