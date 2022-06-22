@@ -204,8 +204,8 @@ Undeploy a container on a digitalocean kubernetes cluster with a specific namesp
 ## Available parameters
 
 <!-- region:parameters start -->
-| Name | description | required | default |
-|-|-|-|-|
+| Name | Description | Required | Default |
+|---|---|---|---|
 | image | The image to deploy. | true |  |
 | host | The host under which to deploy the image.<br><br>If the host contains "*" it will be replaced by the full deployment name.<br> | true |  |
 | env | A comma separated list of environment variable names to provide to the container.<br> | false |  |
