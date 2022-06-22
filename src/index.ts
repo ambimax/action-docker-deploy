@@ -43,7 +43,7 @@ async function validateDigitaloceanCredentials(
     core.startGroup("Login to digitalocean");
 
     const response = await digitalocean(inputs, "/account");
-    if (response.id === "unauthorized") {
+    if (response.id === "Unauthorized") {
         core.setFailed("Invalid digitalocean_token.");
         process.exit();
     }
