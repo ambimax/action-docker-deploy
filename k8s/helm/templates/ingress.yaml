@@ -1,8 +1,4 @@
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: "{{ include "chart.fullname" . }}"
@@ -21,6 +17,9 @@ spec:
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: "{{ include "chart.fullname" . }}"
-              servicePort: {{ .Values.port }}
+              service:
+                name: "{{ include "chart.fullname" . }}"
+                port:
+                  number: {{ .Values.port }}

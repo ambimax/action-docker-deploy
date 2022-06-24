@@ -59,8 +59,8 @@ function generateReadme(): void {
     readme = replaceMarkdownRegion(
         readme,
         "parameters",
-        `| Name | description | required | default |
-|-|-|-|-|
+        `| Name | Description | Required | Default |
+|---|---|---|---|
 ${Object.keys(action.inputs)
     .map(
         key =>

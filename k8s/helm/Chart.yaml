@@ -2,4 +2,4 @@ apiVersion: v1
 appVersion: "1.0"
 description: A Helm chart for a deployment
 name: "ambimax-docker-deployment"
-version: 2.1.0
+version: 2.2.0

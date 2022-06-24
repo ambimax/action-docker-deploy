@@ -1,4 +1,5 @@
 app: ""
+release: ""
 image: ""
 host: ""
 port: 80
