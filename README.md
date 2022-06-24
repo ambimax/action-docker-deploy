@@ -57,21 +57,18 @@ Deploy a container to a digitalocean kubernetes cluster
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-### [kubernetes-env](test/02-kubernetes-env)
+### [kubernetes-undeploy](test/02-kubernetes-undeploy)
 
-Deploy a container to a digitalocean kubernetes cluster with environment variables
+Undeploy a container from a digitalocean kubernetes cluster
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2
         with:
           image: containous/whoami
-          release: env-test
           host: ${{ secrets.EXAMPLE_HOST }}
-          env: WHOAMI_NAME
           digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
-        env:
-          WHOAMI_NAME: ${{ secrets.EXAMPLE_WHOAMI_NAME }}
+          undeploy: "true"
 ```
 
 ### [kubernetes-custom-registry](test/03-kubernetes-custom-registry)
@@ -89,21 +86,40 @@ Deploy a container to a digitalocean kubernetes cluster
           docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
 ```
 
-### [kubernetes-undeploy](test/04-kubernetes-undeploy)
+### [kubernetes-custom-registry-undeploy](test/04-kubernetes-custom-registry-undeploy)
 
 Undeploy a container from a digitalocean kubernetes cluster
 
 ```yml
       - uses: ambimax/action-docker-deploy@v2
         with:
-          image: containous/whoami
+          image: ${{ secrets.EXAMPLE_DOCKER_IMAGE }}
           host: ${{ secrets.EXAMPLE_HOST }}
+          port: ${{ secrets.EXAMPLE_PORT }}
           digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
           digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
-          undeploy: "true"
+          docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
+          undeploy: "1"
 ```
 
-### [kubernetes-env-undeploy](test/05-kubernetes-env-undeploy)
+### [kubernetes-env](test/05-kubernetes-env)
+
+Deploy a container to a digitalocean kubernetes cluster with environment variables
+
+```yml
+      - uses: ambimax/action-docker-deploy@v2
+        with:
+          image: containous/whoami
+          release: env-test
+          host: ${{ secrets.EXAMPLE_HOST }}
+          env: WHOAMI_NAME
+          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
+          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
+        env:
+          WHOAMI_NAME: ${{ secrets.EXAMPLE_WHOAMI_NAME }}
+```
+
+### [kubernetes-env-undeploy](test/06-kubernetes-env-undeploy)
 
 Undeploy a container from a digitalocean kubernetes cluster with environment variables
 
@@ -119,22 +135,6 @@ Undeploy a container from a digitalocean kubernetes cluster with environment var
           undeploy: yes
         env:
           WHOAMI_NAME: ${{ secrets.EXAMPLE_WHOAMI_NAME }}
-```
-
-### [kubernetes-custom-registry-undeploy](test/06-kubernetes-custom-registry-undeploy)
-
-Undeploy a container from a digitalocean kubernetes cluster
-
-```yml
-      - uses: ambimax/action-docker-deploy@v2
-        with:
-          image: ${{ secrets.EXAMPLE_DOCKER_IMAGE }}
-          host: ${{ secrets.EXAMPLE_HOST }}
-          port: ${{ secrets.EXAMPLE_PORT }}
-          digitalocean_token: ${{ secrets.EXAMPLE_DIGITALOCEAN_TOKEN }}
-          digitalocean_cluster: ${{ secrets.EXAMPLE_DIGITALOCEAN_CLUSTER }}
-          docker_secret: ${{ secrets.EXAMPLE_PULL_SECRET }}
-          undeploy: "1"
 ```
 
 ### [kubernetes-values](test/07-kubernetes-values)
